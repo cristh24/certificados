@@ -1,12 +1,14 @@
-
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-wOFz0aTqidjt0Z-sDMg1FlQsgRve1wTwFDD7MN_xTyzRP_XETmatUrELJ8hS6g/pub?output=csv';
+// URL del archivo CSV de Google Sheets
+const csvUrl = 'https://docs.google.com/spreadsheets/d/1-TG8eeu0kQT3KDB7obAgnHNKUbyIRhs7/export?format=csv';  // Enlace del archivo CSV
 
 $(document).ready(function() {
     $('#search-form').on('submit', function(e) {
         e.preventDefault();
         
+        // Obtener el DNI o código ingresado
         const input = $('#dni-input').val().trim();
         
+        // Realizar la búsqueda en el CSV
         $.ajax({
             url: csvUrl,
             type: 'GET',
@@ -15,15 +17,23 @@ $(document).ready(function() {
                 const rows = data.split('\n');
                 let found = false;
 
+                // Iterar sobre las filas del CSV
                 rows.forEach(function(row) {
                     const columns = row.split(',');
-                    const dni = columns[2].trim();
-                    const name = columns[1].trim();
-                    const pdfUrl = columns[3].trim();
 
-                    if (dni === input || columns[0].trim() === input) {
-                        $('#student-name').text(name);
+                    // Obtener los valores de las columnas (Código de estudiante, DNI, Nombres y apellidos, URL)
+                    const codigoEstudiante = columns[0].trim(); // Código de estudiante
+                    const dni = columns[1].trim();             // DNI
+                    const name = columns[2].trim();            // Apellidos y Nombres
+                    const pdfUrl = columns[3].trim();          // URL del PDF
+
+                    // Buscar por DNI o Código de estudiante
+                    if (dni === input || codigoEstudiante === input) {
+                        // Mostrar los resultados en el modal
+                        $('#student-name').text('Nombre: ' + name);
                         $('#download-link').attr('href', pdfUrl);
+                        
+                        // Mostrar el PDF en el iframe
                         $('#pdf-viewer').attr('src', pdfUrl).show();
                         $('#result-modal').fadeIn();
                         found = true;
@@ -40,6 +50,7 @@ $(document).ready(function() {
         });
     });
 
+    // Cerrar el modal al hacer clic en la "X"
     $('.btn-close').click(function() {
         $('#result-modal').fadeOut();
     });
