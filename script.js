@@ -31,10 +31,13 @@ $(document).ready(function() {
                     if (dni === input || codigoEstudiante === input) {
                         // Mostrar los resultados en el modal
                         $('#student-name').text('Nombre: ' + name);
-                        $('#download-link').attr('href', pdfUrl);
                         
-                        // Mostrar el PDF en el iframe
-                        $('#pdf-viewer').attr('src', pdfUrl).show();
+                        // Cambiar el enlace del PDF a la URL de previsualización
+                        const previewUrl = pdfUrl.replace("/uc?export=download", "/file/d/FILE_ID/preview");
+                        $('#download-link').attr('href', pdfUrl);  // Enlace de descarga
+                        
+                        // Mostrar el PDF en el iframe (previsualización)
+                        $('#pdf-viewer').attr('src', previewUrl).show();  // Previsualizar en el iframe
                         $('#result-modal').fadeIn();
                         found = true;
                     }
