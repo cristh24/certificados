@@ -1,52 +1,51 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Certificados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS (usamos CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts para la tipografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
-    <div class="container mt-5">
-        <div class="text-center mb-4">
-            <h1 class="display-4 text-primary">Generador de Certificados</h1>
-            <p class="lead">Ingrese su DNI o Código de Estudiante para generar su certificado.</p>
+<body class="bg-gray-100 font-roboto">
+    <div class="container mx-auto p-6">
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-semibold text-blue-700">Generador de Certificados</h1>
+            <p class="text-xl text-gray-600 mt-2">Ingrese su DNI o Código de Estudiante</p>
         </div>
-        <form id="search-form" class="mb-4">
-            <div class="input-group">
-                <input type="text" id="dni-input" class="form-control" placeholder="DNI o Código" required>
-                <button type="submit" class="btn btn-success">
-                    <i class="fas fa-search"></i> Buscar y Descargar
-                </button>
-            </div>
+        
+        <!-- Formulario de búsqueda con Tailwind CSS -->
+        <form id="search-form" class="mb-6 flex justify-center items-center space-x-2">
+            <input type="text" id="dni-input" class="border border-gray-300 p-2 w-64 rounded-md" placeholder="DNI o Código" required>
+            <button type="submit" class="bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-800 focus:outline-none">
+                Buscar
+            </button>
         </form>
-        <div id="result-modal" class="modal" tabindex="-1" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Certificado de <span id="student-name"></span></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="pdf-viewer-container">
-                            <iframe id="pdf-viewer" width="100%" height="500px" style="display:none;"></iframe>
-                            <p><a id="download-link" href="#" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-download"></i> Descargar Certificado
-                            </a></p>
-                        </div>
-                    </div>
+
+        <!-- Modal para mostrar el resultado -->
+        <div id="result-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+            <div class="bg-white rounded-lg p-6 w-96 text-center shadow-lg">
+                <h3 id="student-name" class="text-2xl font-semibold text-blue-700"></h3>
+                <div class="mt-4">
+                    <button id="view-cert-button" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none">
+                        Ver Certificado
+                    </button>
                 </div>
             </div>
         </div>
-        <footer class="mt-5 text-center">
-            <p>Desarrollado por <strong>Asuntos Académicos UPEU Juliaca</strong></p>
-        </footer>
+        
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <footer class="text-center mt-10 text-gray-600">
+        <p>Desarrollado por <strong>Asuntos Académicos UPEU Juliaca</strong></p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
