@@ -31,13 +31,9 @@ $(document).ready(function() {
                     if (dni === input || codigoEstudiante === input) {
                         // Mostrar los resultados en el modal
                         $('#student-name').text('Nombre: ' + name);
+                        $('#view-cert-button').attr('onclick', 'window.open("' + pdfUrl + '", "_blank")');
                         
-                        // Cambiar el enlace del PDF a la URL de previsualización
-                        const previewUrl = pdfUrl.replace("/uc?export=download", "/file/d/FILE_ID/preview");
-                        $('#download-link').attr('href', pdfUrl);  // Enlace de descarga
-                        
-                        // Mostrar el PDF en el iframe (previsualización)
-                        $('#pdf-viewer').attr('src', previewUrl).show();  // Previsualizar en el iframe
+                        // Mostrar el modal
                         $('#result-modal').fadeIn();
                         found = true;
                     }
@@ -53,8 +49,10 @@ $(document).ready(function() {
         });
     });
 
-    // Cerrar el modal al hacer clic en la "X"
-    $('.btn-close').click(function() {
-        $('#result-modal').fadeOut();
+    // Cerrar el modal al hacer clic fuera de él
+    $('#result-modal').click(function(e) {
+        if (e.target === this) {
+            $(this).fadeOut();
+        }
     });
 });
