@@ -34,7 +34,7 @@ $(document).ready(function() {
                         $('#view-cert-button').attr('onclick', 'window.open("' + pdfUrl + '", "_blank")');
                         
                         // Mostrar el modal
-                        $('#result-modal').fadeIn();
+                        $('#result-modal').modal('show');
                         found = true;
                     }
                 });
@@ -47,12 +47,5 @@ $(document).ready(function() {
                 alert('Hubo un error al cargar el archivo.');
             }
         });
-    });
-
-    // Cerrar el modal al hacer clic fuera de él
-    $('#result-modal').click(function(e) {
-        if (e.target === this) {
-            $(this).fadeOut();
-        }
     });
 });
