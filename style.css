@@ -1,0 +1,46 @@
+
+/* Mejoras generales de estilo */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+#pdf-viewer-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#download-link {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#download-link:hover {
+    background-color: #0056b3;
+}
